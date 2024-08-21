@@ -1,15 +1,18 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from .forms import UploadFileForm
 import pandas as pd
-from .analysis import forecast_sales  # Убедитесь, что функция forecast_sales определена
 
-def export_forecast(request):
-    product_id = request.GET.get('product_id')
-    months = int(request.GET.get('months', 2))
-    forecast = forecast_sales(product_id, months)
+def home(request):
+    return render(request, 'sales/home.html')
 
-    df = pd.DataFrame(forecast)
-    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename=forecast.xlsx'
-    df.to_excel(response, index=False)
-    
-    return response
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = request.FILES['file']
+            df = pd.read_excel(file)
+            # Обработка данных
+            return render(request, 'sales/upload_success.html')
+    else:
+        form = UploadFileForm()
+    return render(request, 'sales/upload.html', {'form': form})
