@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC-XYZ Analysis</title>
+</head>
+<body>
+    <h1>ABC-XYZ Analysis</h1>
+    <form method="get" action="{% url 'abc_xyz_analysis' %}">
+        <label for="year">Select Year:</label>
+        <input type="number" name="year" value="{{ year }}" />
+        <button type="submit">Analyze</button>
+    </form>
+    <!-- Вывод результатов анализа -->
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>ABC Classification</th>
+                <th>XYZ Classification</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result.item }}</td>
+                <td>{{ result.abc_class }}</td>
+                <td>{{ result.xyz_class }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'export_forecast' %}">Download Forecast as Excel</a>
+</body>
+</html>

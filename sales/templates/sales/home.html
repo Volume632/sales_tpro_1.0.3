@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
 </head>
 <body>
-    <h1>Welcome to the Sales Forecast App</h1>
-    <a href="{% url 'upload_file' %}">Go to Upload Page</a>
+    <h1>Анализ продаж по торговой марке Milwaukee</h1>
+
+    <h2>Загрузка файла с продажами</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ sales_form.as_p }}
+        <button type="submit">Загрузить файл с продажами</button>
+    </form>
+
+    <h2>Загрузка файла с прайсом поставщика</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ supplier_form.as_p }}
+        <button type="submit">Загрузить файл поставщика</button>
+    </form>
+
+    <h2><a href="{% url 'abc_xyz_analysis' %}">Перейти к результатам ABC-XYZ</a></h2>
+    <h2><a href="{% url 'export_forecast' %}">Перейти к прогнозу продаж</a></h2>
 </body>
 </html>
