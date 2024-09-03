@@ -1,0 +1,56 @@
+/* Сброс отступов по умолчанию и установка базовых стилей */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Центрирование текста приветствия */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Оставляем немного пространства сверху и снизу */
+    text-align: center;
+}
+
+h1 {
+    color: red;
+}
+
+/* Позиционирование секции регистрации */
+header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
+
+.register-section {
+    background: white; /* Фон для лучшего отображения */
+    border: 1px solid #ccc; /* Граница для секции */
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.register-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.register-section li {
+    margin-bottom: 5px;
+}
+
+.register-section a {
+    text-decoration: none;
+    color: rgb(39, 180, 51); /* Цвет текста ссылок */
+}
+
+/* Опционально: добавьте сетку, если это нужно для других частей контента */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}

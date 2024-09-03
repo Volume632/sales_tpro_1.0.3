@@ -4,8 +4,8 @@ from django.db import models
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)
-    price1 = models.DecimalField(max_digits=10, decimal_places=2)  # Цена 1
-    price2 = models.DecimalField(max_digits=10, decimal_places=2)  # Цена 2
+    price1 = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    price2 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00) 
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
